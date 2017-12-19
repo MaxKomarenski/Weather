@@ -1,5 +1,7 @@
-
 import org.json.simple.JSONObject;
+
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
 
 
 public class Weather {
@@ -7,10 +9,19 @@ public class Weather {
         JsonCreator jsonCreator = new JsonCreator();
         CodeCreator codeCreator = new CodeCreator();
 
+        System.out.print("Enter the city: ");
+
+        //Enter data using BufferReader
+        BufferedReader reader =
+                new BufferedReader(new InputStreamReader(System.in));
+
+        // Reading data using readLine
+        String city = reader.readLine();
+
 
         String url = "http://api.openweathermap.org/data/2.5/weather";
 
-        JSONObject data = jsonCreator.makeJson("Lviv");
+        JSONObject data = jsonCreator.makeJson(city);
         String code = codeCreator.makeCode(data).toString();
 
         String req = url + "?" + code;
